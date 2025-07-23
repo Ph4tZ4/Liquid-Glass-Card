@@ -200,6 +200,6 @@ liquid_glass/
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source and available under the [MIT License](https://github.com/PhacPha).
 
-โปรเจกต์นี้เป็น open source และมีให้ภายใต้ [MIT License](LICENSE) 
+โปรเจกต์นี้เป็น open source และมีให้ภายใต้ [MIT License](https://github.com/PhacPha) 
