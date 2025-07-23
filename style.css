@@ -12,6 +12,14 @@ body {
   overflow-x: hidden;
 }
 
+/* Lock scrolling for index page on larger screens */
+@media (min-width: 769px) {
+  body.index-page {
+    overflow: hidden;
+    height: 100vh;
+  }
+}
+
 /* Background image overlay */
 body::before {
   content: '';
@@ -20,10 +28,22 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80');
+  background-image: url('https://wallpapers.com/images/featured/landscape-293chzhp3r67ag4a.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  z-index: -1;
+}
+
+/* Black opacity overlay for background image */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
   z-index: -1;
 }
 
@@ -37,11 +57,71 @@ body::before {
   gap: 60px;
 }
 
+/* Index page specific layout */
+.index-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 120px 20px 40px;
+  gap: 40px;
+}
+
+/* Lock scrolling version for larger screens */
+@media (min-width: 769px) {
+  .index-container {
+    height: 100vh;
+    min-height: auto;
+    padding: 100px 20px 20px;
+    gap: 30px;
+    justify-content: center;
+    overflow: hidden;
+  }
+}
+
+.comparison-section {
+  display: flex;
+  gap: 40px;
+  width: 100%;
+  max-width: 1400px;
+  align-items: center;
+  justify-content: center;
+}
+
 .section {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+}
+
+/* Index page sections for side-by-side layout */
+.index-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+  max-width: 600px;
+}
+
+.index-section .glass-card {
+  width: 100%;
+  height: 300px;
+  max-width: 500px;
+}
+
+/* Optimize card size for locked scroll layout */
+@media (min-width: 769px) {
+  .index-section .glass-card {
+    height: 350px;
+    max-width: 450px;
+  }
+  
+  .section-description {
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
 }
 
 .section-title {
@@ -72,6 +152,64 @@ body::before {
   margin-bottom: 5px;
   color: white;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
+}
+
+/* Larger text for detail pages */
+.card-layout h2 {
+  font-size: 3.5rem;
+  margin-bottom: 12px;
+}
+
+.card-layout p {
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+
+.card-layout .description {
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+/* Text-only layout styling */
+.card-layout .description h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.card-layout .description ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 15px 0;
+}
+
+.card-layout .description li {
+  margin-bottom: 8px;
+  padding-left: 0;
+  font-size: 1rem;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.card-layout .description li strong {
+  color: rgba(255, 255, 255, 1);
+  font-weight: 600;
+}
+
+.card-layout .description .tech-note {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 15px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  border-left: 3px solid rgba(255, 255, 255, 0.3);
 }
 
 .glass-card p {
@@ -79,19 +217,39 @@ body::before {
   font-weight: 500;
   color: rgba(255, 255, 255, 0.9);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 2;
 }
 
-/* PRO VERSION - Advanced Liquid Glass */
+/* Subtle refraction animation */
+@keyframes glassRefraction {
+  0%, 100% {
+    backdrop-filter: blur(4px) saturate(180%) brightness(105%);
+    -webkit-backdrop-filter: blur(4px) saturate(180%) brightness(105%);
+  }
+  50% {
+    backdrop-filter: blur(3px) saturate(185%) brightness(106%);
+    -webkit-backdrop-filter: blur(3px) saturate(185%) brightness(106%);
+  }
+}
+
+/* PRO VERSION - Ultra Transparent Liquid Glass */
 .pro-glass {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.005);
+  backdrop-filter: blur(4px) saturate(180%) brightness(105%);
+  -webkit-backdrop-filter: blur(4px) saturate(180%) brightness(105%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+  animation: glassRefraction 4s ease-in-out infinite;
 }
 
+/* Subtle glass refraction layer */
 .pro-glass::before {
   content: '';
   position: absolute;
@@ -100,21 +258,31 @@ body::before {
   right: 0;
   bottom: 0;
   border-radius: 20px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.4) 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
-  z-index: -1;
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 20%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .pro-glass:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px) scale(1.005);
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(2px) saturate(190%) brightness(107%);
+  -webkit-backdrop-filter: blur(2px) saturate(190%) brightness(107%);
+  border-color: rgba(255, 255, 255, 0.25);
   box-shadow: 
-    0 15px 45px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  border-color: rgba(255, 255, 255, 0.4);
+    0 25px 70px rgba(0, 0, 0, 0.15),
+    0 12px 40px rgba(0, 0, 0, 0.1),
+    0 6px 20px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* Enhanced refraction on hover */
+.pro-glass:hover::before {
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 20%),
+    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 20%);
 }
 
 /* NOOB VERSION - Basic Blur */
@@ -157,5 +325,519 @@ body::before {
     width: 260px;
     height: 160px;
     padding: 20px;
+  }
+}
+
+/* Navigation Styles */
+.navigation {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  z-index: 100;
+}
+
+.nav-btn {
+  background: rgba(255, 255, 255, 0.005);
+  backdrop-filter: blur(4px) saturate(180%) brightness(105%);
+  -webkit-backdrop-filter: blur(4px) saturate(180%) brightness(105%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 25px;
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 20%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.nav-btn:hover {
+  transform: translateY(-2px) scale(1.005);
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(2px) saturate(190%) brightness(107%);
+  -webkit-backdrop-filter: blur(2px) saturate(190%) brightness(107%);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 25px 70px rgba(0, 0, 0, 0.15),
+    0 12px 40px rgba(0, 0, 0, 0.1),
+    0 6px 20px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.nav-btn:hover::before {
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 20%),
+    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 20%);
+}
+
+/* Card Layout for Text + Image */
+.card-layout {
+  width: 90vw;
+  height: 75vh;
+  max-width: 1200px;
+  max-height: 600px;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Text-only layout for detail pages */
+.card-layout .card-content {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.card-layout .card-text {
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  overflow: hidden;
+}
+
+.card-content {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.card-text {
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* Index page card text styling */
+.index-section .card-text {
+  padding: 30px;
+}
+
+.card-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+/* Index page card image styling */
+.index-section .card-image {
+  padding: 20px;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.card-layout:hover .card-image img {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.description {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 10px;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+/* Enhanced Index Page Beauty */
+.index-enhancement {
+  position: relative;
+}
+
+.index-enhancement::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  right: -50px;
+  bottom: -50px;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.03) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: -1;
+  border-radius: 50px;
+}
+
+.floating-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.particle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.particle:nth-child(1) {
+  width: 8px;
+  height: 8px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.particle:nth-child(2) {
+  width: 4px;
+  height: 4px;
+  top: 60%;
+  left: 80%;
+  animation-delay: 2s;
+}
+
+.particle:nth-child(3) {
+  width: 6px;
+  height: 6px;
+  top: 80%;
+  left: 20%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 0.8;
+  }
+}
+
+/* Enhanced Title Styling for Index */
+.enhanced-title {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.enhanced-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  border-radius: 2px;
+}
+
+/* Header Section Styling */
+.header-section {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 20px;
+}
+
+/* Adjust header for locked scroll layout */
+@media (min-width: 769px) {
+  .header-section {
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+  
+  .main-title {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+.main-title {
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.section-description {
+  text-align: center;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 15px;
+  font-style: italic;
+  font-weight: 300;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Updates */
+@media (max-width: 768px) {
+  .card-layout {
+    width: 95vw;
+    height: 85vh;
+    max-width: none;
+    max-height: none;
+  }
+  
+  .card-text {
+    padding: 25px;
+    justify-content: flex-start;
+    padding-top: 30px;
+  }
+  
+  .card-image {
+    padding: 20px;
+  }
+  
+  .card-layout h2 {
+    font-size: 2.5rem;
+    margin-bottom: 8px;
+  }
+  
+  .card-layout p {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+  
+  .card-layout .description {
+    font-size: 0.95rem;
+    line-height: 1.3;
+  }
+  
+  .card-layout .description h3 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+  
+  .card-layout .description li {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    line-height: 1.25;
+  }
+  
+  .card-layout .description ul {
+    margin-bottom: 12px;
+  }
+  
+  .card-layout .description .tech-note {
+    font-size: 0.85rem;
+    padding: 10px;
+    margin-top: 12px;
+  }
+  
+  .navigation {
+    top: 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .nav-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+  
+  .container {
+    padding-top: 120px;
+  }
+  
+  .main-title {
+    font-size: 3rem;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+    padding: 0 20px;
+  }
+  
+  .header-section {
+    margin-bottom: 30px;
+    padding: 15px;
+  }
+  
+  /* Index page responsive */
+  .comparison-section {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .index-section .glass-card {
+    height: 250px;
+  }
+}
+
+/* Medium screens (small tablets and large phones) */
+@media (max-width: 640px) and (min-width: 481px) {
+  .card-layout {
+    height: 88vh;
+  }
+  
+  .card-layout h2 {
+    font-size: 2.2rem;
+  }
+  
+  .card-layout p {
+    font-size: 1.2rem;
+  }
+  
+  .card-layout .description {
+    font-size: 0.9rem;
+  }
+  
+  .card-layout .description h3 {
+    font-size: 1.2rem;
+  }
+  
+  .card-layout .description li {
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-layout {
+    width: 95vw;
+    height: 90vh;
+    max-height: none;
+  }
+  
+  .card-content {
+    flex-direction: column;
+  }
+  
+  .card-text, .card-image {
+    flex: 1;
+    height: auto;
+  }
+  
+  .card-text {
+    padding: 20px;
+    text-align: left;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: 25px;
+  }
+  
+  .card-image {
+    padding: 15px;
+  }
+  
+  .card-layout h2 {
+    font-size: 2rem;
+    margin-bottom: 6px;
+  }
+  
+  .card-layout p {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+  
+  .card-layout .description {
+    font-size: 0.85rem;
+    line-height: 1.25;
+  }
+  
+  .card-layout .description h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  
+  .card-layout .description li {
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+  
+  .card-layout .description ul {
+    margin-bottom: 10px;
+  }
+  
+  .card-layout .description .tech-note {
+    font-size: 0.75rem;
+    padding: 8px;
+    margin-top: 10px;
+  }
+  
+  .main-title {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    padding: 0 15px;
+  }
+  
+  .navigation {
+    top: 15px;
+    gap: 10px;
+  }
+  
+  .nav-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+  
+  .container {
+    padding-top: 110px;
+  }
+  
+  .index-section .glass-card {
+    height: 220px;
   }
 }
