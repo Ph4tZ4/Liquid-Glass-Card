@@ -25,6 +25,8 @@ Experience the difference between professional and basic glass morphism:
 - **Pro Version**: Ultra-transparent with advanced refraction and subtle animations
 - **Noob Version**: Simple glass effect with basic blur and transparency
 
+![Liquid Glass Effects Demo](img/ex1.png)
+
 ### 🛠️ Technical Implementation
 
 #### Pro Glass Effect Features:
@@ -121,6 +123,8 @@ This project demonstrates:
 สัมผัสความแตกต่างระหว่าง glass morphism แบบมืออาชีพและแบบพื้นฐาน:
 - **เวอร์ชัน Pro**: โปร่งใสสูงสุดพร้อมการหักเหขั้นสูงและแอนิเมชันที่ละเอียดอ่อน
 - **เวอร์ชัน Noob**: glass effect แบบง่ายพร้อม blur และความโปร่งใสพื้นฐาน
+
+![การสาธิต Liquid Glass Effects](img/ex1.png)
 
 ### 🛠️ การใช้งานทางเทคนิค
 
